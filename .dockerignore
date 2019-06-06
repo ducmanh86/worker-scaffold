@@ -1,0 +1,8 @@
+node_modules
+.tmp
+.idea
+README.md
+.gitignore
+.env.example
+deployment/Dockerfile
+deployment/docker-compose.yml

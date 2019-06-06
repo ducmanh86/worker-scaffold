@@ -1,0 +1,32 @@
+version: '3.1'
+
+services:
+  service:
+    build: ..
+    ports:
+      - 3000:3000
+    volumes:
+      - ./:/usr/src/app
+      - /usr/src/app/node_modules
+    command: npm start
+    depends_on:
+      - db
+    links:
+      - db
+  adminer:
+    image: adminer
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
+    links:
+      - db
+  db:
+    image: postgres:alpine
+    volumes:
+      - ./db_data:/var/lib/postgresql/data
+#    ports:
+#      - 5432:5432
+    environment:
+      # Use postgres/123456 user/password credentials
+      POSTGRES_PASSWORD: 123456
